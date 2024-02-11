@@ -1,6 +1,13 @@
 <script>
     let count = 0;
-    $: doubled = count * 2;
+    $: {
+        console.log(`the count is ${count}`);
+        console.log(`this will alos logged whenever count changes`)
+    }
+    $: if (count >= 10) {
+        alert(`count is dangerously high!`);
+        count = 0;
+    }
 
     function inclement() {
         count++;
@@ -11,5 +18,3 @@
     Clicked {count}
     {count === 1 ? 'time' : 'times'}
 </button>
-
-<p>{count} doubled is {doubled}</p>
