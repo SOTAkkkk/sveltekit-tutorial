@@ -1,20 +1,17 @@
 <script>
-    let count = 0;
-    $: {
-        console.log(`the count is ${count}`);
-        console.log(`this will alos logged whenever count changes`)
-    }
-    $: if (count >= 10) {
-        alert(`count is dangerously high!`);
-        count = 0;
+    let numbers = [1, 2, 3, 4];
+
+    function addNumber() {
+        // numbers.push(numbers.length + 1);
+        // numbers = numbers;
+        numbers[numbers.length] = numbers.length + 1;
     }
 
-    function inclement() {
-        count++;
-    }
+    $: sum = numbers.reduce((total, currentNumber) => total + currentNumber, 0)
 </script>
 
-<button on:click={inclement}>
-    Clicked {count}
-    {count === 1 ? 'time' : 'times'}
+<p>{numbers.join(`+`)} = {sum}</p>
+
+<button on:click={addNumber}>
+    Add a Number
 </button>
