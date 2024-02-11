@@ -1,5 +1,9 @@
-<script>
-    let src = 'https://placehold.jp/300x200.png';
-</script>
+<p>This is a paragraph</p>
 
-<img src={src} alt="A man dances.">
+<style>
+    p {
+        color: goldenrod;
+        font-family: 'Comic Sans MS', cursive;
+        font-size: 2em;
+    }
+</style>
