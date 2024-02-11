@@ -1,17 +1,6 @@
 <script>
-    let numbers = [1, 2, 3, 4];
-
-    function addNumber() {
-        // numbers.push(numbers.length + 1);
-        // numbers = numbers;
-        numbers[numbers.length] = numbers.length + 1;
-    }
-
-    $: sum = numbers.reduce((total, currentNumber) => total + currentNumber, 0)
+import Nested from "./Nested.svelte";
 </script>
 
-<p>{numbers.join(`+`)} = {sum}</p>
+<Nested answer={42} />
 
-<button on:click={addNumber}>
-    Add a Number
-</button>
