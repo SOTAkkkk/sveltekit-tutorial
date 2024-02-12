@@ -1,24 +1,23 @@
 <script>
-    import Thing from "./Thing.svelte";
+    let m = {x: 0, y: 0}
 
-    let things = [
-        {id: 1, name: 'apple'},
-        {id: 2, name: 'banana'},
-        {id: 3, name: 'carrot'},
-        {id: 4, name: 'doughnut'},
-        {id: 5, name: 'egg'},
-    ];
-
-    function handleClick() {
-        things = things.slice(1);
+    function handleMove(event) {
+        m.x = event.clientX;
+        m.y = event.clientY;
     }
-
 </script>
 
-<button on:click={handleClick}>
-    Remove first thing
-</button>
+<div on:pointermove={handleMove}>
+    The pointer is at {m.x} x {m.y}
+</div>
 
-{#each things as thing (thing.id)}
-    <Thing name={thing.name}/>
-{/each}
+<style>
+    div {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+    }
+</style>
