@@ -1,27 +1,34 @@
 <script>
-    import {marked} from 'marked';
+    import {onMount} from "svelte";
+    import {paint} from "./gradient.js";
 
-    let value = `Some words are *italic*, some are **bold**\n\n- lists\n- are\n- cool`;
+    onMount(() => {
+        const canvas = document.querySelector('canvas');
+        const context = canvas.getContext('2d');
+
+        requestAnimationFrame(function loop(t) {
+            requestAnimationFrame(loop);
+            paint(context, t);
+        })
+    })
 </script>
 
-<div class="grid">
-    input
-    <textarea bind:value={value}></textarea>
-    output
-    <div>{@html marked(value)}</div>
-</div>
+<canvas
+        width={32}
+        height={32}
+/>
 
 <style>
-    .grid {
-        display: grid;
-        grid-template-columns: 5em 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-gap: 1em;
+    canvas {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
         height: 100%;
-    }
-
-    textarea {
-        flex: 1;
-        resize: none;
+        background-color: #666;
+        mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
+        mask-size: 60vmin;
+        -webkit-mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;
+        -webkit-mask-size: 60vmin;
     }
 </style>
