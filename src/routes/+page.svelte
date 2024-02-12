@@ -1,11 +1,10 @@
 <script>
-    import Inner from "./Inner.svelte";
-
-    function handleMessage(event) {
-        alert(event.detail.text)
-
-    }
+    let name = 'world';
 </script>
 
+<div>
+    <input bind:value={name}>
+    <h1>Hello {name}!</h1>
+</div>
 
-<Inner on:message={handleMessage}/>
+
